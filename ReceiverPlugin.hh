@@ -8,7 +8,7 @@
 
 namespace gazebo
 {
-  /// \brief An example plugin for a contact sensor.
+  /// \brief An example plugin for a receiver sensor.
   class ReceiverPlugin : public SensorPlugin
   {
     /// \brief Constructor.
@@ -22,14 +22,14 @@ namespace gazebo
     /// \param[in] _sdf SDF element that describes the plugin.
     public: virtual void Load(sensors::SensorPtr _sensor, sdf::ElementPtr _sdf);
 
-    /// \brief Callback that receives the contact sensor's update signal.
+    /// \brief Callback that receives the receiver sensor's update signal.
     private: virtual void OnUpdate();
     //private: virtual bool UpdateImpl();
 
-    /// \brief Pointer to the contact sensor
+    /// \brief Pointer to the receiver sensor
     private: sensors::WirelessReceiverPtr parentSensor;
 
-    /// \brief Connection that maintains a link between the contact sensor's
+    /// \brief Connection that maintains a link between the receiver sensor's
     /// updated signal and the OnUpdate callback.
     private: event::ConnectionPtr updateConnection;
   };
