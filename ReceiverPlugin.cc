@@ -50,15 +50,15 @@ void ReceiverPlugin::OnUpdate()
   // create sensor pointer
   sensors::SensorPtr sensor_ptr;
   // find wirelessTransmitter sensor and instantiate a sensor object for it
-  sensor_ptr = SensorManager::Instance()->GetSensor("wirelessTransmitter");
+  sensor_ptr = sensors::SensorManager::Instance()->GetSensor("wirelessTransmitter");
   // create a wireless transmitter pointer
   sensors::WirelessTransmitterPtr transmitSensor;
   // convert sensor pointer to wireless transmitter pointer
   transmitSensor = std::dynamic_pointer_cast<sensors::WirelessTransmitter>(sensor_ptr);
 
   //Get pointer to receiver model
-  WorldPtr world = physics::get_world("default");
-  ModelPtr model_ptr = world->ModelByName("wirelessReceiver");
+  physics::WorldPtr world = physics::get_world("default");
+  physics::ModelPtr model_ptr = world->ModelByName("wirelessReceiver");
 
   // Get pose of receiver model in global frame
   ignition::math::Pose3d model_pose = model_ptr->RelativePose();
@@ -76,7 +76,7 @@ void ReceiverPlugin::OnUpdate()
 
   signal_strength = transmitSensor->SignalStrength(model_pose, this->parentSensor->Gain());
   std::cout << "Signal strengh: " << signal_strength << "\n";
-  std::cout << "Transmitter Pose: " << model_pose << "\n";
+  std::cout << "Receiver Pose: " << model_pose << "\n";
 
   return;
       
